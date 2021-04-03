@@ -1,10 +1,10 @@
 import React, {Component} from 'react'
-import { TouchableOpacity } from 'react-native';
-import { TextInput } from 'react-native';
-import {View, Text} from 'react-native';
+import {View, Text, TouchableOpacity, StyleSheet, TextInput} from 'react-native';
 import MyHeader from '../components/MyHeader';
 import db from '../config';
 import firebase from 'firebase';
+import {Input} from 'react-native-elements'
+import { RFValue } from "react-native-responsive-fontsize";
 
 export default class IncomeScreen extends Component {
     constructor() {
@@ -31,9 +31,11 @@ export default class IncomeScreen extends Component {
         return(
             <View>
                 <MyHeader 
+                    navigation = {this.props.navigation}
                     title = "Your Income"
                 />
-                <TextInput
+                <Input
+                    style = {styles.formTextInput}
                     placeholder = {"Enter your monthly Income"}
                     keyboardType = {'numeric'}
                     onChangeText = {(text) => {
@@ -42,12 +44,46 @@ export default class IncomeScreen extends Component {
                         })
                     }}
                 />
-                <TouchableOpacity onPress = {()=>{
-                    this.goToBudget();
-                }}>
-                    <Text>Submit</Text>
+                <TouchableOpacity 
+                    style={[styles.button, { marginTop: RFValue(30) }]}
+                    onPress = {()=>{
+                        this.goToBudget();
+                    }}
+                >
+                    <Text style={styles.requestbuttontxt}>Submit</Text>
                 </TouchableOpacity>
             </View>
         )
     }
 }
+const styles = StyleSheet.create({
+    formTextInput: {
+        marginTop : RFValue(100),
+        width: "75%",
+        height: RFValue(35),
+        borderWidth: 1,
+        padding: 10,
+    },
+    requestbuttontxt:{
+        fontSize: RFValue(20),
+        fontWeight: "bold",
+        color: "#fff",
+    },
+    button: {
+        width: "75%",
+        height: RFValue(60),
+        justifyContent: "center",
+        alignItems: "center",
+        borderRadius: RFValue(50),
+        backgroundColor: "#32867d",
+        shadowColor: "#000",
+        shadowOffset: {
+          width: 0,
+          height: 8,
+        },
+        shadowOpacity: 0.44,
+        shadowRadius: 10.32,
+        elevation: 16,
+        marginLeft: RFValue(50),
+    },
+})
