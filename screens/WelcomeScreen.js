@@ -23,8 +23,6 @@ export default class WelcomeScreen extends Component {
       password: "",
       firstName: "",
       lastName: "",
-      address: "",
-      contact: "",
       confirmPassword: "",
       isModalVisible: "false"
     };
@@ -41,10 +39,7 @@ export default class WelcomeScreen extends Component {
           db.collection("users").add({
             first_name: this.state.firstName,
             last_name: this.state.lastName,
-            contact: this.state.contact,
             email_id: this.state.emailId,
-            address: this.state.address,
-            IsBookRequestActive: false
           });
           return Alert.alert("User Added Successfully", "", [
             {
@@ -107,31 +102,6 @@ export default class WelcomeScreen extends Component {
               onChangeText={text => {
                 this.setState({
                   lastName: text
-                });
-              }}
-            />
-
-            <Text style={styles.label}>Contact </Text>
-            <TextInput
-              style={styles.formInput}
-              placeholder={"Contact"}
-              maxLength={10}
-              keyboardType={"numeric"}
-              onChangeText={text => {
-                this.setState({
-                  contact: text
-                });
-              }}
-            />
-
-            <Text style={styles.label}> Address </Text>
-            <TextInput
-              style={styles.formInput}
-              placeholder={"Address"}
-              multiline={true}
-              onChangeText={text => {
-                this.setState({
-                  address: text
                 });
               }}
             />

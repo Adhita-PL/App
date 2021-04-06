@@ -39,6 +39,7 @@ export default class BudgetScreen extends Component {
             "other" : other,
         })
     }
+    
     render() {
         return(
             <View style = {{flex : 1}}>
@@ -46,6 +47,10 @@ export default class BudgetScreen extends Component {
                     navigation = {this.props.navigation}
                     title = "Your Budget"
                 />
+                <View style = {{justifyContent: 'center', alignItems : 'center'}}>
+                    <Text style = {{fontSize : RFValue(25), marginBottom: RFValue(20)}}>Set your spending categories here!</Text>
+                </View>
+                
                 <ScrollView style={styles.scrollView}>
                     <KeyboardAvoidingView>
                     <View>
@@ -95,7 +100,7 @@ export default class BudgetScreen extends Component {
                                     bills : text
                                 })
                             }}
-                            value = {this.state.bills}
+                            value = {this.state.entertainment}
                         />
                         <Text style = {{fontSize : RFValue(20)}}>Kids</Text>
                         <Input
@@ -133,9 +138,11 @@ export default class BudgetScreen extends Component {
                             }}
                             value = {this.state.other}
                         />
-                        <TouchableOpacity style = {{width : 1000, height: 50}} onPress = {()=>{this.addBudget()}} >
-                            <Text style = {{fontSize : 30}}>Submit</Text>
-                        </TouchableOpacity>
+                        <View style = {{alignItems : 'center'}}>
+                            <TouchableOpacity style = {styles.button} onPress = {()=>{this.addBudget()}} >
+                                <Text style = {styles.buttonText}>Set Budgets</Text>
+                            </TouchableOpacity>
+                        </View>
                     </View>
                     </KeyboardAvoidingView>
                 </ScrollView>
@@ -151,5 +158,27 @@ const styles = StyleSheet.create({
     },
     scrollView: {
         marginHorizontal: 20,
+    },
+    button: {
+        width: "80%",
+        height: RFValue(50),
+        justifyContent: "center",
+        alignItems: "center",
+        borderRadius: RFValue(25),
+        backgroundColor: "#ffff",
+        shadowColor: "#000",
+        marginBottom: RFValue(10),
+        shadowOffset: {
+          width: 0,
+          height: 8
+        },
+        shadowOpacity: 0.3,
+        shadowRadius: 10.32,
+        elevation: 16
+    },
+    buttonText: {
+        color: "#32867d",
+        fontWeight: "200",
+        fontSize: RFValue(20)
     },
 })

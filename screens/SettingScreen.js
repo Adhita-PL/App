@@ -22,8 +22,6 @@ export default class SettingScreen extends Component {
       emailId: "",
       firstName: "",
       lastName: "",
-      address: "",
-      contact: "",
       docId: "",
     };
   }
@@ -52,8 +50,6 @@ export default class SettingScreen extends Component {
     db.collection("users").doc(this.state.docId).update({
       first_name: this.state.firstName,
       last_name: this.state.lastName,
-      address: this.state.address,
-      contact: this.state.contact,
     });
 
     Alert.alert("Profile Updated Successfully");
@@ -102,34 +98,7 @@ export default class SettingScreen extends Component {
                   });
                 }}
                 value={this.state.lastName}
-              />
-
-                <Text style={styles.label}>Contact </Text>
-              <TextInput
-                style={styles.formTextInput}
-                placeholder={"Contact"}
-                maxLength={10}
-                keyboardType={"numeric"}
-                onChangeText={(text) => {
-                  this.setState({
-                    contact: text,
-                  });
-                }}
-                value={this.state.contact}
-              />
-
-                <Text style={styles.label}>Address </Text>
-              <TextInput
-                style={styles.formTextInput}
-                placeholder={"Address"}
-                multiline={true}
-                onChangeText={(text) => {
-                  this.setState({
-                    address: text,
-                  });
-                }}
-                value={this.state.address}
-              />
+              /> 
             </View>
               <View style={styles.buttonView}>
                 <TouchableOpacity
