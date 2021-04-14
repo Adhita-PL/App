@@ -40,6 +40,8 @@ export default class WelcomeScreen extends Component {
             first_name: this.state.firstName,
             last_name: this.state.lastName,
             email_id: this.state.emailId,
+            setExpenses : false,
+            setBudget : false 
           });
           return Alert.alert("User Added Successfully", "", [
             {
@@ -228,7 +230,7 @@ export default class WelcomeScreen extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#FFFACD"
+    backgroundColor: "#9DF9EF"
   },
   profileContainer:{
     flex:1,

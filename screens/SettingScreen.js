@@ -38,8 +38,6 @@ export default class SettingScreen extends Component {
             emailId: data.email_id,
             firstName: data.first_name,
             lastName: data.last_name,
-            address: data.address,
-            contact: data.contact,
             docId: doc.id,
           });
         });

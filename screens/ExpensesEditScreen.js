@@ -6,7 +6,7 @@ import {Input} from 'react-native-elements'
 import db from '../config'
 import firebase from 'firebase'
 
-export default class ExpenseScreen extends Component {
+export default class ExpensesEditScreen extends Component{
     constructor() {
         super()
         this.state = {
@@ -18,16 +18,6 @@ export default class ExpenseScreen extends Component {
             kids : 0,
             fuel : 0,
             other: 0,
-            setExpenses : "",
-            userDocId : '',
-
-            groceriesExpense : 0,
-            rentExpense : 0,
-            billsExpense : 0,
-            entertainmentExpense : 0,
-            kidsExpense : 0,
-            fuelExpense : 0,
-            otherExpense : 0,
         }
     }
     addBudget = () =>{
@@ -38,117 +28,22 @@ export default class ExpenseScreen extends Component {
         var kids = parseInt(this.state.kids)
         var fuel = parseInt(this.state.fuel)
         var other = parseInt(this.state.other)
-        db.collection("expenses").add({
-            "user_id" : this.state.userId,
+        db.collection("expenses").where('user_id', '==', this.state.userId).update({
             "groceries" : grocery,
             "rent" : rent,
-            "bills" : bills,                            
+            "bills" : bills,
             "entertainment" : entertainment,
             "kids" : kids,
             "fuel" : fuel,
             "other" : other,
         })
-        db.collection("users").where("email_id", "==", this.state.userId).get()
-        .then()
-        .then((snapshot) => {
-            snapshot.forEach((doc) => {
-                db.collection("users").doc(doc.id).update({
-                    setExpenses: true,
-                });
-            });
-        });
-    }
-    getSetExpenses() {
-        db.collection("users").where("email_id", "==", this.state.userId)
-        .onSnapshot((querySnapshot) => {
-            querySnapshot.forEach((doc) => {
-              this.setState({
-                setExpenses: doc.data().setExpenses,
-                userDocId: doc.id,
-              });
-            });
-        });
-    }
-    getExpenseForDisplay = () => {
-        db.collection("expenses").where("user_id", '==', this.state.userId).get()
-        .then((snapshot)=>{
-            snapshot.forEach((doc)=>{
-                this.setState({
-                    groceriesExpense : doc.data().groceries,
-                    rentExpense : doc.data().rent,
-                    billsExpense : doc.data().bills,
-                    entertainmentExpense : doc.data().entertainment,
-                    kidsExpense : doc.data().kids,
-                    fuelExpense : doc.data().fuel,
-                    otherExpense : doc.data().other,
-                })
-            })
-        })
-    }
-    componentDidMount() {
-        this.getSetExpenses();
     }
     render() {
-        if(this.state.setExpenses === true) {
-            return(
-                <View style = {{flex : 1}}>
-                    <MyHeader 
-                        navigation = {this.props.navigation}
-                        title = "Your Expenses"
-                    />
-                    <View style={styles.box}>
-                        <Text style={styles.spendingCatogeriesText}>
-                            Groceries : {this.state.groceriesExpense}
-                        </Text>
-                    </View>
-                    <View style = {styles.box}>
-                        <Text style={styles.spendingCatogeriesText}>
-                            Rent : {this.state.rentExpense}
-                        </Text>
-                    </View>
-                    <View style = {styles.box}>
-                        <Text style={styles.spendingCatogeriesText}>
-                            Bills : {this.state.billsExpense}
-                        </Text>
-                    </View>
-                    <View style = {styles.box}>
-                        <Text style={styles.spendingCatogeriesText}>
-                            Entertainment : {this.state.entertainmentExpense}
-                        </Text>
-                    </View>
-                    <View style = {styles.box}>
-                        <Text style={styles.spendingCatogeriesText}>
-                            Kids : {this.state.kidsExpense}
-                        </Text>
-                    </View>
-                    <View style = {styles.box}>
-                        <Text style={styles.spendingCatogeriesText}>
-                            Fuel : {this.state.fuelExpense}
-                        </Text>
-                    </View>
-                    <View style = {styles.box}>
-                        <Text style={styles.spendingCatogeriesText}>
-                            Others : {this.state.otherExpense}
-                        </Text>
-                    </View> 
-                    <View style = {{justifyContent : 'center',alignItems : 'center'}}>
-                        <TouchableOpacity 
-                            style={styles.button}
-                            onPress = {()=>{
-                                this.props.navigation.navigate("ExpenseEdit")
-                            }}>
-                            <Text>Edit</Text>    
-                        </TouchableOpacity> 
-                    </View>
-                       
-                </View>
-            )
-        } 
         return(
             <View style = {{flex : 1}}>
                 <MyHeader 
                     navigation = {this.props.navigation}
-                    title = "Your Expenses"
+                    title = "Edit"
                 />
                 <ScrollView style={styles.scrollView}>
                     <KeyboardAvoidingView>

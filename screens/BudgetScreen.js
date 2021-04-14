@@ -18,6 +18,16 @@ export default class BudgetScreen extends Component {
             kids : 0,
             fuel : 0,
             other: 0,
+            setBudget : "",
+            userDocId : '',
+
+            groceriesBudget : 0,
+            rentBudget : 0,
+            billsBudget : 0,
+            entertainmentBudget : 0,
+            kidsBudget : 0,
+            fuelBudget : 0,
+            otherBudget : 0,
         }
     }
     addBudget = () =>{
@@ -38,9 +48,102 @@ export default class BudgetScreen extends Component {
             "fuel" : fuel,
             "other" : other,
         })
+        db.collection("users").where("email_id", "==", this.state.userId).get()
+        .then()
+        .then((snapshot) => {
+            snapshot.forEach((doc) => {
+                db.collection("users").doc(doc.id).update({
+                    setBudget: true,
+                });
+            });
+        });
     }
-    
+    getSetBudget() {
+        db.collection("users").where("email_id", "==", this.state.userId)
+        .onSnapshot((querySnapshot) => {
+            querySnapshot.forEach((doc) => {
+              this.setState({
+                setBudget: doc.data().setBudget,
+                userDocId: doc.id,
+              });
+            });
+        });
+    }
+    getBudgetForDisplay = () => {
+        db.collection("budget").where("user_id", '==', this.state.userId).get()
+        .then((snapshot)=>{
+            snapshot.forEach((doc)=>{
+                this.setState({
+                    groceriesBudget : doc.data().groceries,
+                    rentBudget : doc.data().rent,
+                    billsBudget : doc.data().bills,
+                    entertainmentBudget : doc.data().entertainment,
+                    kidsBudget : doc.data().kids,
+                    fuelBudget : doc.data().fuel,
+                    otherBudget : doc.data().other,
+                })
+            })
+        })
+    }
+    componentDidMount() {
+        this.getBudgetForDisplay();
+    }
     render() {
+        if(this.state.setBudget === true) {
+            return(
+                <View style = {{flex : 1}}>
+                    <MyHeader 
+                        navigation = {this.props.navigation}
+                        title = "Your Budgets"
+                    />
+                    <View style={styles.box}>
+                        <Text style={styles.spendingCatogeriesText}>
+                            Groceries : {this.state.groceriesBudget}
+                        </Text>
+                    </View>
+                    <View style = {styles.box}>
+                        <Text style={styles.spendingCatogeriesText}>
+                            Rent : {this.state.rentBudget}
+                        </Text>
+                    </View>
+                    <View style = {styles.box}>
+                        <Text style={styles.spendingCatogeriesText}>
+                            Bills : {this.state.billsBudget}
+                        </Text>
+                    </View>
+                    <View style = {styles.box}>
+                        <Text style={styles.spendingCatogeriesText}>
+                            Entertainment : {this.state.entertainmentBudget}
+                        </Text>
+                    </View>
+                    <View style = {styles.box}>
+                        <Text style={styles.spendingCatogeriesText}>
+                            Kids : {this.state.kidsBudget}
+                        </Text>
+                    </View>
+                    <View style = {styles.box}>
+                        <Text style={styles.spendingCatogeriesText}>
+                            Fuel : {this.state.fuelBudget}
+                        </Text>
+                    </View>
+                    <View style = {styles.box}>
+                        <Text style={styles.spendingCatogeriesText}>
+                            Others : {this.state.otherBudget}
+                        </Text>
+                    </View> 
+                    <View style = {{justifyContent : 'center',alignItems : 'center'}}>
+                        <TouchableOpacity 
+                            style={styles.button}
+                            onPress = {()=>{
+                                this.props.navigation.navigate("BudgetEdit")
+                            }}>
+                            <Text>Edit</Text>    
+                        </TouchableOpacity> 
+                    </View>
+                       
+                </View>
+            )
+        }
         return(
             <View style = {{flex : 1}}>
                 <MyHeader 
@@ -158,6 +261,22 @@ const styles = StyleSheet.create({
     },
     scrollView: {
         marginHorizontal: 20,
+    },
+    spendingCatogeriesText : {
+        fontWeight: "400",
+        fontSize: RFValue(20),
+    },
+    box : {
+        flex : 0.1, 
+        justifyContent:'center',
+        alignItems:'center',
+        marginTop:RFValue(10),
+        padding: RFValue(10),
+        borderWidth:1,
+        borderColor:'#deeedd', 
+        marginLeft : RFValue(10),
+        marginRight : RFValue(10),
+        width : RFValue(410)
     },
     button: {
         width: "80%",
