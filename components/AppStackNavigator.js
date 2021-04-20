@@ -1,23 +1,14 @@
 import React from 'react';
-import { createStackNavigator } from 'react-navigation-stack';
-import ExpenseScreen from '../screens/ExpenseScreen';
+import { createSwitchNavigator } from 'react-navigation';
 import ExpensesEditScreen from '../screens/ExpensesEditScreen';
+import ExpenseScreen from '../screens/ExpenseScreen'
 
-export const AppStackNavigator = createStackNavigator({
-    ExpensesPage : {
+export const switchNavigator = createSwitchNavigator({
+  ExpensesPage : {
     screen : ExpenseScreen,
-    navigationOptions:{
-      headerShown : false
-    }
   },
   ExpenseEdit : {
     screen : ExpensesEditScreen,
-    navigationOptions:{
-      headerShown : false
-    }
   }
-},
-  {
-    initialRouteName: 'ExpensesPage'
-  }
-);
+});
+const AppContainer = createAppContainer(switchNavigator);

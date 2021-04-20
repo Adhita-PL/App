@@ -1,23 +1,14 @@
 import React from 'react';
-import { createStackNavigator } from 'react-navigation-stack';
 import BudgetScreen from '../screens/BudgetScreen';
 import BudgetEditScreen from '../screens/BudgetEditScreen';
+import { createSwitchNavigator } from 'react-navigation';
 
-export const AppStackNavigator = createStackNavigator({
-    BudgetPage : {
+export const switchNavigator = createSwitchNavigator({
+  BudgetPage : {
     screen : BudgetScreen,
-    navigationOptions:{
-      headerShown : false
-    }
   },
   BudgetEdit : {
     screen : BudgetEditScreen,
-    navigationOptions:{
-      headerShown : false
-    }
   }
-},
-  {
-    initialRouteName: 'BudgetPage'
-  }
-);
+});
+const AppContainer = createAppContainer(switchNavigator);

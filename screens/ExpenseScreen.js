@@ -21,7 +21,7 @@ export default class ExpenseScreen extends Component {
             setExpenses : "",
             userDocId : '',
 
-            groceriesExpense : 0,
+            groceriesExpense : 2,
             rentExpense : 0,
             billsExpense : 0,
             entertainmentExpense : 0,
@@ -31,22 +31,22 @@ export default class ExpenseScreen extends Component {
         }
     }
     addBudget = () =>{
-        var grocery = parseInt(this.state.groceries)
+        /*var grocery = parseInt(this.state.groceries)
         var rent = parseInt(this.state.rent)
         var bills = parseInt(this.state.bills)
         var entertainment = parseInt(this.state.entertainment)
         var kids = parseInt(this.state.kids)
         var fuel = parseInt(this.state.fuel)
-        var other = parseInt(this.state.other)
+        var other = parseInt(this.state.other)*/
         db.collection("expenses").add({
             "user_id" : this.state.userId,
-            "groceries" : grocery,
-            "rent" : rent,
-            "bills" : bills,                            
-            "entertainment" : entertainment,
-            "kids" : kids,
-            "fuel" : fuel,
-            "other" : other,
+            "groceries" : this.state.groceries,
+            "rent" : this.state.rent,
+            "bills" : this.state.bills,                            
+            "entertainment" : this.state.entertainment,
+            "kids" : this.state.kids,
+            "fuel" : this.state.fuel,
+            "other" : this.state.other,
         })
         db.collection("users").where("email_id", "==", this.state.userId).get()
         .then()

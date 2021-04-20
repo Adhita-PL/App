@@ -75,57 +75,64 @@ export default class AnalysisScreen extends Component {
                     <View>
                         <Text style = {styles.heading}>Groceries</Text>
                         <View>
-                            <Text>Limit : {this.state.groceriesBudget}</Text>
-                            <Text>Spent : {this.state.groceriesExpense} </Text>
-                            <Text>Remaining :</Text>
+                            <Text style = {styles.subtitles}>Limit : {this.state.groceriesBudget}</Text>
+                            <Text style = {styles.subtitles}>Spent : {this.state.groceriesExpense} </Text>
+                            <Text style = {styles.subtitles}>Remaining : {this.state.groceriesBudget - this.state.groceriesExpense}</Text>
+                            <View style = {styles.lineStyle} /> 
                         </View>
                     </View>
                     <View>
                         <Text style = {styles.heading}>Rent</Text>
                         <View>
-                            <Text>Limit : {this.state.rentBudget}</Text>
-                            <Text>Spent : {this.state.rentExpense} </Text>
-                            <Text>Remaining :</Text>
+                            <Text style = {styles.subtitles}>Limit : {this.state.rentBudget}</Text>
+                            <Text style = {styles.subtitles}>Spent : {this.state.rentExpense} </Text>
+                            <Text style = {styles.subtitles}>Remaining :</Text>
+                            <View style = {styles.lineStyle} />
                         </View>
                     </View>
                     <View>
                         <Text style = {styles.heading}>Bills</Text>
                         <View>
-                            <Text>Limit : {this.state.billsBudget}</Text>
-                            <Text>Spent : {this.state.billsExpense} </Text>
-                            <Text>Remaining :</Text>
+                            <Text style = {styles.subtitles}>Limit : {this.state.billsBudget}</Text>
+                            <Text style = {styles.subtitles}>Spent : {this.state.billsExpense} </Text>
+                            <Text style = {styles.subtitles}>Remaining :</Text>
+                            <View style = {styles.lineStyle} />
                         </View>
                     </View>
                     <View>
                         <Text style = {styles.heading}>Entertainment</Text>
                         <View>
-                            <Text>Limit : {this.state.entertainmentBudget}</Text>
-                            <Text>Spent : {this.state.entertainmentExpense} </Text>
-                            <Text>Remaining :</Text>
+                            <Text style = {styles.subtitles}>Limit : {this.state.entertainmentBudget}</Text>
+                            <Text style = {styles.subtitles}>Spent : {this.state.entertainmentExpense} </Text>
+                            <Text style = {styles.subtitles}>Remaining :</Text>
+                            <View style = {styles.lineStyle} />
                         </View>
                     </View>
                     <View>
                         <Text style = {styles.heading}>Kids</Text>
                         <View>
-                            <Text>Limit : {this.state.kidsBudget}</Text>
-                            <Text>Spent : {this.state.kidsExpense}</Text>
-                            <Text>Remaining :</Text>
+                            <Text style = {styles.subtitles}>Limit : {this.state.kidsBudget}</Text>
+                            <Text style = {styles.subtitles}>Spent : {this.state.kidsExpense}</Text>
+                            <Text style = {styles.subtitles}>Remaining :</Text>
+                            <View style = {styles.lineStyle} />
                         </View>
                     </View>
                     <View>
                         <Text style = {styles.heading}>Fuel</Text>
                         <View>
-                            <Text>Limit : {this.state.fuelBudget}</Text>
-                            <Text>Spent : {this.state.fuelExpense}</Text>
-                            <Text>Remaining :</Text>
+                            <Text style = {styles.subtitles}>Limit : {this.state.fuelBudget}</Text>
+                            <Text style = {styles.subtitles}>Spent : {this.state.fuelExpense}</Text>
+                            <Text style = {styles.subtitles}>Remaining :</Text>
+                            <View style = {styles.lineStyle} />
                         </View>
                     </View>
                     <View>
                         <Text style = {styles.heading}>Other</Text>
                         <View>
-                            <Text>Limit : {this.state.otherBudget}</Text>
-                            <Text>Spent : {this.state.otherExpense}</Text>
-                            <Text>Remaining :</Text>
+                            <Text style = {styles.subtitles}>Limit : {this.state.otherBudget}</Text>
+                            <Text style = {styles.subtitles}>Spent : {this.state.otherExpense}</Text>
+                            <Text style = {styles.subtitles}>Remaining :</Text>
+                            <View style = {styles.lineStyle} />
                         </View>
                     </View>
                 </ScrollView>
@@ -137,4 +144,12 @@ const styles = StyleSheet.create({
     heading : {
         fontSize : RFValue(20)
     },
+    subtitles : {
+        marginLeft : RFValue(20),
+    },
+    lineStyle:{
+        borderWidth: 0.5,
+        borderColor:'black',
+        margin:10,
+   }
 })
