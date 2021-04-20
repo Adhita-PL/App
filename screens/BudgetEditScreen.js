@@ -18,8 +18,24 @@ export default class BudgetEditScreen extends Component{
             kids : 0,
             fuel : 0,
             other: 0,
+            docId : "",
         }
     }
+    getUserDetails = () => {
+        var email = firebase.auth().currentUser.email;
+        db.collection("budget")
+          .where("user_id", "==", email)
+          .get()
+          .then((snapshot) => {
+            snapshot.forEach((doc) => {
+              var data = doc.data();
+              this.setState({
+                groceries: data.groceries,
+                docId: doc.id,
+              });
+            });
+        });
+    };
     addBudget = () =>{
         var grocery = parseInt(this.state.groceries)
         var rent = parseInt(this.state.rent)
@@ -28,7 +44,7 @@ export default class BudgetEditScreen extends Component{
         var kids = parseInt(this.state.kids)
         var fuel = parseInt(this.state.fuel)
         var other = parseInt(this.state.other)
-        db.collection("budget").where('user_id', '==', this.state.userId).update({
+        db.collection("budget").doc(this.state.docId).update({
             "groceries" : grocery,
             "rent" : rent,
             "bills" : bills,
@@ -37,6 +53,9 @@ export default class BudgetEditScreen extends Component{
             "fuel" : fuel,
             "other" : other,
         })
+    }
+    componentDidMount() {
+        this.getUserDetails();
     }
     render() {
         return(
