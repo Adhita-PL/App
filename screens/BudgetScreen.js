@@ -86,6 +86,7 @@ export default class BudgetScreen extends Component {
         })
     }
     componentDidMount() {
+        this.getSetBudget();
         this.getBudgetForDisplay();
     }
     render() {
@@ -282,21 +283,19 @@ const styles = StyleSheet.create({
         width : RFValue(410)
     },
     button: {
-        width: "80%",
-        height: RFValue(50),
+        width: "75%",
+        height: RFValue(60),
         justifyContent: "center",
         alignItems: "center",
-        borderRadius: RFValue(25),
-        backgroundColor: "#ffff",
+        borderRadius: RFValue(60),
+        backgroundColor: "#ff5722",
         shadowColor: "#000",
-        marginBottom: RFValue(10),
         shadowOffset: {
           width: 0,
-          height: 8
+          height: 8,
         },
-        shadowOpacity: 0.3,
-        shadowRadius: 10.32,
-        elevation: 16
+        elevation: 16,
+        marginTop : RFValue(20),
     },
     buttonText: {
         color: "#32867d",

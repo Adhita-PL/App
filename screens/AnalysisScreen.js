@@ -86,7 +86,7 @@ export default class AnalysisScreen extends Component {
                         <View>
                             <Text style = {styles.subtitles}>Limit : {this.state.rentBudget}</Text>
                             <Text style = {styles.subtitles}>Spent : {this.state.rentExpense} </Text>
-                            <Text style = {styles.subtitles}>Remaining :</Text>
+                            <Text style = {styles.subtitles}>Remaining : {this.state.rentBudget - this.state.rentExpense}</Text>
                             <View style = {styles.lineStyle} />
                         </View>
                     </View>
@@ -95,7 +95,7 @@ export default class AnalysisScreen extends Component {
                         <View>
                             <Text style = {styles.subtitles}>Limit : {this.state.billsBudget}</Text>
                             <Text style = {styles.subtitles}>Spent : {this.state.billsExpense} </Text>
-                            <Text style = {styles.subtitles}>Remaining :</Text>
+                            <Text style = {styles.subtitles}>Remaining : {this.state.billsBudget - this.state.billsExpense}</Text>
                             <View style = {styles.lineStyle} />
                         </View>
                     </View>
@@ -104,7 +104,7 @@ export default class AnalysisScreen extends Component {
                         <View>
                             <Text style = {styles.subtitles}>Limit : {this.state.entertainmentBudget}</Text>
                             <Text style = {styles.subtitles}>Spent : {this.state.entertainmentExpense} </Text>
-                            <Text style = {styles.subtitles}>Remaining :</Text>
+                            <Text style = {styles.subtitles}>Remaining : {this.state.entertainmentBudget - this.state.entertainmentExpense}</Text>
                             <View style = {styles.lineStyle} />
                         </View>
                     </View>
@@ -113,7 +113,7 @@ export default class AnalysisScreen extends Component {
                         <View>
                             <Text style = {styles.subtitles}>Limit : {this.state.kidsBudget}</Text>
                             <Text style = {styles.subtitles}>Spent : {this.state.kidsExpense}</Text>
-                            <Text style = {styles.subtitles}>Remaining :</Text>
+                            <Text style = {styles.subtitles}>Remaining : {this.state.kidsBudget - this.state.kidsExpense}</Text>
                             <View style = {styles.lineStyle} />
                         </View>
                     </View>
@@ -122,7 +122,7 @@ export default class AnalysisScreen extends Component {
                         <View>
                             <Text style = {styles.subtitles}>Limit : {this.state.fuelBudget}</Text>
                             <Text style = {styles.subtitles}>Spent : {this.state.fuelExpense}</Text>
-                            <Text style = {styles.subtitles}>Remaining :</Text>
+                            <Text style = {styles.subtitles}>Remaining : {this.state.fuelBudget - this.state.fuelExpense}</Text>
                             <View style = {styles.lineStyle} />
                         </View>
                     </View>
@@ -131,7 +131,7 @@ export default class AnalysisScreen extends Component {
                         <View>
                             <Text style = {styles.subtitles}>Limit : {this.state.otherBudget}</Text>
                             <Text style = {styles.subtitles}>Spent : {this.state.otherExpense}</Text>
-                            <Text style = {styles.subtitles}>Remaining :</Text>
+                            <Text style = {styles.subtitles}>Remaining : {this.state.otherBudget - this.state.otherExpense}</Text>
                             <View style = {styles.lineStyle} />
                         </View>
                     </View>
